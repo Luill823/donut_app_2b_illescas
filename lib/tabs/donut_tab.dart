@@ -1,3 +1,4 @@
+import 'package:donut_app_2b_illescas/utils/donut_tile.dart';
 import 'package:flutter/material.dart';
 
 class DonutTab extends StatelessWidget {
@@ -16,16 +17,19 @@ class DonutTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //gridview para acomodar elementos en cuadrícula
     return GridView.builder(
       //Elementos en nuestra lista
+      //Cuantos elementos tengo
       itemCount: donutsOnSale.length,
       padding: const EdgeInsets.all(8.0),
+      //Prepa 1: Organiza como distribuir
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         //Número de columnas
         crossAxisCount: 2),
       itemBuilder: (context, index) {
-        return DonutTittle(
-        donutFlavor: donutsOnSale[index] [0],
+        return DonutTile(
+        donutFlavour: donutsOnSale[index] [0],
         donutPrice: donutsOnSale[index] [1],
         donutColor: donutsOnSale[index] [2],
         imageName: donutsOnSale[index] [3],
