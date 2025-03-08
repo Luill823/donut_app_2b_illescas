@@ -51,8 +51,8 @@ class _HomePageState extends State<HomePage> {
         Padding(padding: const EdgeInsets.symmetric(horizontal: 36, vertical: 18))
         ,Row(
           children: [
-            Text("I Want to", style: TextStyle( fontSize: 30 )),
-            Text(" eat", style: TextStyle(
+            Text("I Want to ", style: TextStyle( fontSize: 30 )),
+            Text("eat", style: TextStyle(
                fontSize: 30 ,
                fontWeight: FontWeight.bold,
                decoration: TextDecoration.underline))

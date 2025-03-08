@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class DonutTile extends StatelessWidget {
   final String donutFlavour;
+  final String donutStore;
   final String donutPrice;
   final Color donutColor;
   final String donutImage;
@@ -9,6 +10,7 @@ class DonutTile extends StatelessWidget {
   const DonutTile({
     super.key,
     required this.donutFlavour,
+    required this.donutStore,
     required this.donutPrice,
     required this.donutColor,
     required this.donutImage,
@@ -24,6 +26,7 @@ class DonutTile extends StatelessWidget {
           borderRadius: BorderRadius.circular(24),
         ),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Price Tag
             Row(
@@ -53,6 +56,48 @@ class DonutTile extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 24),
               child: Image.asset(donutImage),
+            ),
+            // Donut Flavour
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Text(
+                donutFlavour,
+                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              ),
+            ),
+            // Store Name
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Text(
+                donutStore,
+                style: const TextStyle(fontSize: 16, color: Colors.grey),
+              ),
+            ),
+            const SizedBox(height: 10),
+            // Favorite and Add button
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  // Heart Icon
+                  const Icon(Icons.favorite_border, size: 24, color: Colors.black),
+                  // Add Text Button
+                  GestureDetector(
+                    onTap: () {
+                      // Acción al presionar "Add"
+                    },
+                    child: const Text(
+                      "Add",
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        decoration: TextDecoration.underline,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ],
         ),
