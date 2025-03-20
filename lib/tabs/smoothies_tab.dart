@@ -1,7 +1,7 @@
 import 'package:donut_app_2b_illescas/utils/donut_tile.dart';
 import 'package:flutter/material.dart';
 
-class PancakeTab extends StatelessWidget {
+class PizzaTab extends StatelessWidget {
   // Lista de donas
   final List donutsOnSale = [
     // [donutFlavor, donutStore, donutPrice, donutColor, imageName]
@@ -15,7 +15,7 @@ class PancakeTab extends StatelessWidget {
     ["Choco", "Walmart", "95", Colors.brown, "lib/images/chocolate_donut.png"]
   ];
 
-  PancakeTab({super.key});
+  PizzaTab({super.key});
 
   @override
   Widget build(BuildContext context) {
