@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
 
 class DonutTile extends StatelessWidget {
-  final String donutFlavour;
-  final String donutStore;
+  final String donutFLavor;
   final String donutPrice;
-  final Color donutColor;
-  final String donutImage;
+  final dynamic donutColor; // Puede ser un `MaterialColor`
+  final String imageName;
+  final String donutEnterprise;
+  final Function (double, String) addToCart; // Función para agregar al carrito
 
   const DonutTile({
     super.key,
-    required this.donutFlavour,
-    required this.donutStore,
+    required this.donutFLavor,
     required this.donutPrice,
-    required this.donutColor,
-    required this.donutImage,
+    this.donutColor,
+    required this.imageName,
+    required this.donutEnterprise,
+    required this.addToCart,
   });
 
   @override
@@ -22,19 +24,18 @@ class DonutTile extends StatelessWidget {
       padding: const EdgeInsets.all(12.0),
       child: Container(
         decoration: BoxDecoration(
-          color: donutColor.withOpacity(0.2),
+          color: donutColor[100],
           borderRadius: BorderRadius.circular(24),
         ),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Price Tag
+            // PriceTag
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Container(
                   decoration: BoxDecoration(
-                    color: donutColor.withOpacity(0.4),
+                    color: donutColor[50],
                     borderRadius: const BorderRadius.only(
                       topRight: Radius.circular(24),
                       bottomLeft: Radius.circular(24),
@@ -46,46 +47,45 @@ class DonutTile extends StatelessWidget {
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 18,
-                      color: donutColor.withOpacity(0.8),
+                      color: donutColor[800],
                     ),
                   ),
                 ),
               ],
             ),
-            // Donut Image
+
+            // Donut Picture
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 24),
-              child: Image.asset(donutImage),
+              padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 24),
+              child: Image.asset(imageName),
             ),
-            // Donut Flavour
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Text(
-                donutFlavour,
-                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-              ),
+
+            // Donut Text
+            Text(
+              donutFLavor,
+              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
             ),
-            // Store Name
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Text(
-                donutStore,
-                style: const TextStyle(fontSize: 16, color: Colors.grey),
-              ),
+
+            Text(
+              donutEnterprise,
+              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
             ),
-            const SizedBox(height: 10),
-            // Favorite and Add button
+
+            // Love icon + add button
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+              padding: const EdgeInsets.all(12.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  // Heart Icon
-                  const Icon(Icons.favorite_border, size: 24, color: Colors.black),
-                  // Add Text Button
+                  Icon(
+                    Icons.favorite_border,
+                    color: Colors.pink[400],
+                  ),
+
+                  //  Botón de texto con `GestureDetector`
                   GestureDetector(
                     onTap: () {
-                      // Acción al presionar "Add"
+                      addToCart(double.parse(donutPrice), donutFLavor); // Llamamos a la función cuando se presiona
                     },
                     child: const Text(
                       "Add",
@@ -93,12 +93,15 @@ class DonutTile extends StatelessWidget {
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
                         decoration: TextDecoration.underline,
+                        color: Colors.blue, // Hace que se vea más interactivo
                       ),
                     ),
                   ),
                 ],
               ),
             ),
+
+            const SizedBox(height: 4),
           ],
         ),
       ),
